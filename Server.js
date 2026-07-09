@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true
 const mongo = new MongoClient("mongodb://0.0.0.0:27017");
 
 app.get("/", (req, res) => {
-    res.render("login", { error: null }); // Support error rendering
+    res.render("login", { error: null }); 
 });
 
 app.get("/signup", (req, res) => {
@@ -80,7 +80,6 @@ app.post("/deleteaccount", async (req, res) => {
 
     if (user) {
         await collection.deleteOne({ email, password });
-        // ✅ Redirect back to deleteaccount with success flag
         return res.redirect("/deleteaccount?success=true");
     } else {
         return res.send("Invalid credentials. Account not found.");
